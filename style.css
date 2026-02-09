@@ -1,0 +1,487 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom, #ff7aa2, #ffb3c6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* ================= ARROW STYLES ================= */
+.arrow {
+    position: fixed;
+    font-size: 50px;
+    top: -100px;
+    right: -100px;
+    opacity: 0;
+    z-index: 1000;
+    transform: rotate(45deg);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    pointer-events: none;
+}
+
+.arrow-trail {
+    position: fixed;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.8));
+    top: -100px;
+    right: -100px;
+    opacity: 0;
+    z-index: 999;
+    transform-origin: right center;
+    pointer-events: none;
+}
+
+.arrow-shoot {
+    animation: shootArrow 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes shootArrow {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-100vw, 100vh) rotate(45deg);
+    }
+}
+
+.trail-follow {
+    animation: trailFollow 1s forwards linear;
+}
+
+@keyframes trailFollow {
+    0% {
+        opacity: 0.8;
+        width: 0;
+        transform: scaleX(0);
+    }
+    70% {
+        opacity: 0.8;
+        width: 100px;
+        transform: scaleX(1);
+    }
+    100% {
+        opacity: 0;
+        width: 100px;
+        transform: scaleX(1);
+    }
+}
+
+/* ================= BROKEN HEART PIECES ================= */
+.heart-piece {
+    position: fixed;
+    font-size: 30px;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+#piece1 {
+    top: 50%;
+    left: 50%;
+}
+
+#piece2 {
+    top: 50%;
+    left: 50%;
+}
+
+#piece3 {
+    top: 50%;
+    left: 50%;
+}
+
+.piece-fly-1 {
+    animation: flyPiece1 1.5s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.piece-fly-2 {
+    animation: flyPiece2 1.5s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.piece-fly-3 {
+    animation: flyPiece3 1.5s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes flyPiece1 {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-100px, -80px) rotate(-120deg);
+    }
+}
+
+@keyframes flyPiece2 {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(120px, -60px) rotate(150deg);
+    }
+}
+
+@keyframes flyPiece3 {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-40px, 100px) rotate(80deg);
+    }
+}
+
+/* ================= CARD STYLES ================= */
+.card {
+    background: rgba(255, 255, 255, 0.98);
+    width: 90%;
+    max-width: 400px;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2),
+                0 0 30px rgba(255, 105, 180, 0.2);
+    z-index: 10;
+    position: relative;
+    animation: cardAppear 1s ease-out;
+}
+
+@keyframes cardAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.heart-container {
+    margin-bottom: 20px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+.heart {
+    font-size: 70px;
+    animation: emotionalBeat 1.2s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.3));
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.heart-shadow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(255,105,180,0.3) 0%, rgba(255,105,180,0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes emotionalBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Heart Hit Animation */
+.heart-hit {
+    animation: heartHit 0.3s forwards !important;
+}
+
+@keyframes heartHit {
+    0% { transform: scale(1.2); }
+    25% { transform: scale(0.9) rotate(-10deg); }
+    50% { transform: scale(1.1) rotate(10deg); }
+    75% { transform: scale(0.95) rotate(-5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Heart Break Animation */
+.heart-break {
+    animation: heartBreakEffect 1s forwards !important;
+}
+
+@keyframes heartBreakEffect {
+    0% { 
+        transform: scale(1);
+        opacity: 1;
+        filter: brightness(1) drop-shadow(0 0 10px rgba(255,105,180,0.3));
+    }
+    30% {
+        transform: scale(1.3) rotate(10deg);
+        opacity: 0.9;
+    }
+    70% {
+        transform: scale(0.8) rotate(-15deg);
+        opacity: 0.7;
+        filter: brightness(0.8) drop-shadow(0 0 5px rgba(255,0,0,0.5));
+    }
+    100% { 
+        transform: scale(0) rotate(-30deg);
+        opacity: 0;
+        filter: brightness(0.5) drop-shadow(0 0 0px rgba(255,0,0,0));
+    }
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.3rem;
+    color: #db2777;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.line {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 182, 193, 0.1);
+    border-radius: 15px;
+}
+
+.highlight {
+    color: #ff4d6d;
+    font-weight: 600;
+}
+
+.question {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 25px 0;
+    color: #db2777;
+    padding: 15px;
+    background: rgba(219, 39, 119, 0.05);
+    border-radius: 15px;
+    border: 2px dashed #ff69b4;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+button {
+    flex: 1;
+    padding: 16px 5px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 55px;
+}
+
+.yes {
+    background: linear-gradient(135deg, #ff4d6d, #db2777);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(219, 39, 119, 0.3);
+}
+
+.yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(219, 39, 119, 0.4);
+    background: linear-gradient(135deg, #ff3358, #c2185b);
+}
+
+.no {
+    background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+    color: #666;
+    font-weight: 500;
+}
+
+.no:hover {
+    background: linear-gradient(135deg, #d0d0d0, #adadad);
+    transform: translateY(-2px);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+    font-size: 1.1rem;
+}
+
+.btn-sparkles {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.yes:hover .btn-sparkles {
+    opacity: 1;
+}
+
+.btn-sad {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    transition: all 0.3s;
+}
+
+.no:hover .btn-sad {
+    transform: translateY(-50%) scale(1.2);
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+    padding-top: 15px;
+    border-top: 1px solid rgba(219, 39, 119, 0.1);
+}
+
+/* Heart States */
+.blink {
+    animation: emotionalBlink 0.8s infinite !important;
+}
+
+@keyframes emotionalBlink {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+}
+
+.crack {
+    animation: heartCrack 0.8s infinite alternate !important;
+}
+
+@keyframes heartCrack {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+    100% { 
+        transform: scale(0.85) rotate(-15deg);
+        filter: brightness(0.7) sepia(0.5);
+    }
+}
+
+/* ================= CARD DISAPPEAR ================= */
+.card-hide {
+    animation: emotionalFadeOut 1.5s forwards !important;
+}
+
+@keyframes emotionalFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.85) rotate(-5deg);
+        visibility: hidden;
+    }
+}
+
+/* ================= FULL SCREEN IMAGE ================= */
+.girl-image {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.girl-show {
+    z-index: 100;
+    animation: emotionalFadeIn 3s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+}
+
+@keyframes emotionalFadeIn {
+    0% { 
+        opacity: 0;
+        filter: blur(10px) brightness(0.8);
+    }
+    100% { 
+        opacity: 1;
+        filter: blur(0) brightness(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .card {
+        padding: 25px 20px;
+        max-width: 90%;
+    }
+    
+    .heart {
+        font-size: 55px;
+    }
+    
+    .heart-container {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .title {
+        font-size: 1.9rem;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 18px 5px;
+    }
+    
+    .arrow {
+        font-size: 40px;
+    }
+}
